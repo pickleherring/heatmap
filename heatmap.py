@@ -8,7 +8,7 @@ import regex
 with open('sex_terms.txt', encoding='utf-8') as f:
     TERMS = set(f.read().split())
 
-SENTENCE_BREAK = regex.compile('[.?!:;]')
+SENTENCE_BREAK = regex.compile('[.?!:;]+')
 WORD = regex.compile(r'\b\w+\b')
 
 DEFAULT_WINDOW_SIZE = 200
