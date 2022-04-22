@@ -63,17 +63,6 @@ pasted_text = streamlit.sidebar.text_area(
 )
 
 
-# %% user config - window size
-
-window_size = streamlit.sidebar.slider(
-    'adjust the smoothness of your heatmap',
-    min_value=3,
-    max_value=MAX_WINDOW_SIZE,
-    value=DEFAULT_WINDOW_SIZE,
-    help="slide left for a more detailed but more 'jagged' map,\nslide right for a 'smoother' map"  
-)
-
-
 # %% process user data
 
 if uploaded_file:
@@ -83,7 +72,19 @@ else:
 
 if text:
     df = heatmap.process_text(text, terms=TERMS, window=window_size)
+    n_sentences = df.shape[0]
     hotspots = df.nlargest(N_HOTSPOTS, 'smoothed')
+
+
+# %% user config - window size
+
+window_size = streamlit.sidebar.slider(
+    'adjust the smoothness of your heatmap',
+    min_value=1,
+    max_value=min(n_sentences // 2, MAX_WINDOW_SIZE),
+    value=DEFAULT_WINDOW_SIZE,
+    help="slide left for a more detailed but more 'jagged' map,\nslide right for a 'smoother' map"  
+)
 
 
 # %% explanation
