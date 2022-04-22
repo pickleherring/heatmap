@@ -82,7 +82,8 @@ else:
     text = pasted_text
 
 if text:
-    df = heatmap.process_text(text, terms=TERMS, window=window_size)
+    n_sentences = len(heatmap.split_sentences(text))
+    df = heatmap.process_text(text, terms=TERMS, window=min(n_sentences // 2, window_size))
     hotspots = df.nlargest(N_HOTSPOTS, 'smoothed')
 
 
