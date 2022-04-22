@@ -15,14 +15,11 @@ N_HOTSPOTS = 1
 
 CONTEXT_SIZE = 10
 
+with open('sex_terms.txt', encoding='utf-8') as f:
+    TERMS = f.read().split()
+
 
 # %% helper functions
-
-@streamlit.cache
-def load_terms(filename):
-    
-    return set(open(filename, encoding='utf-8').read().split())
-
 
 @streamlit.cache
 def load_explanation_text(filename):
@@ -47,8 +44,6 @@ def read_uploaded_file(file):
 intro = load_explanation_text('intro.md')
 explanation = load_explanation_text('explanation.md')
 faq = load_explanation_text('FAQ.md')
-
-terms = load_terms('sex_terms.txt')
 
 
 # %% user data - file upload
@@ -87,7 +82,7 @@ else:
     text = pasted_text
 
 if text:
-    df = heatmap.process_text(text, terms=terms, window=window_size)
+    df = heatmap.process_text(text, terms=TERMS, window=window_size)
     hotspots = df.nlargest(N_HOTSPOTS, 'smoothed')
 
 
