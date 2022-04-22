@@ -131,7 +131,7 @@ if text:
     for row in hotspots.index:
         context_start = row - (CONTEXT_SIZE // 2)
         context_stop = row + (CONTEXT_SIZE // 2)
-        context = '\n'.join(df['sentence'][context_start:context_stop])
+        context = ''.join(df['sentence'][context_start:context_stop])
         streamlit.text('[...] ' + context + ' [...]')
 
 else:
