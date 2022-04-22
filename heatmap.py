@@ -22,7 +22,7 @@ def split_sentences(text):
     returns: list of str
     """
     
-    return [s.strip() for s in SENTENCE_BREAK.split(text)]
+    return SENTENCE_BREAK.split(text)
 
 
 def get_words(text):
