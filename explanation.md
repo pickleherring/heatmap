@@ -1,0 +1,2 @@
+The heatmap shows how 'hot' your story gets as it progresses. Your story begins at the left of the graph and ends at the right, and the height of the peaks shows how hot the story is at each point. The 'peak heat' of your story is marked with a red dot, and an extract of the text at this point is shown below:
+
