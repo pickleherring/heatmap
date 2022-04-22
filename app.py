@@ -65,16 +65,13 @@ pasted_text = streamlit.sidebar.text_area(
 
 # %% user config - window size
 
-if text:
-    window_size = streamlit.sidebar.slider(
-        'adjust the smoothness of your heatmap',
-        min_value=3,
-        max_value=MAX_WINDOW_SIZE,
-        value=DEFAULT_WINDOW_SIZE,
-        help="slide left for a more detailed but more 'jagged' map,\nslide right for a 'smoother' map"  
-    )
-else:
-    window_size = DEFAULT_WINDOW_SIZE
+window_size = streamlit.sidebar.slider(
+    'adjust the smoothness of your heatmap',
+    min_value=3,
+    max_value=MAX_WINDOW_SIZE,
+    value=DEFAULT_WINDOW_SIZE,
+    help="slide left for a more detailed but more 'jagged' map,\nslide right for a 'smoother' map"
+)
 
 
 # %% process user data
