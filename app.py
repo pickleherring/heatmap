@@ -139,7 +139,7 @@ if text:
         
     else:
         
-        streamlit.markdown('text is too short (try at least 3 sentences)'
+        streamlit.markdown('text is too short (try at least 3 sentences)')
 
 else:
     
