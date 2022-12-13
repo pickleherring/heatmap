@@ -104,36 +104,42 @@ if text:
 
 streamlit.subheader('your results')
 
-if text:  
+if text:
     
-    fig = (
-        plotnine.ggplot(
-            df,
-            plotnine.aes(
-                x='pos',
-                y='smoothed'
+    if n_sentences >= 3:
+    
+        fig = (
+            plotnine.ggplot(
+                df,
+                plotnine.aes(
+                    x='pos',
+                    y='smoothed'
+                )
+            )
+            + plotnine.labs(
+                x='sentence',
+                y='heat'
+            )
+            + plotnine.geom_line()
+            + plotnine.geom_point(
+                data=hotspots,
+                color='red'
             )
         )
-        + plotnine.labs(
-            x='sentence',
-            y='heat'
-        )
-        + plotnine.geom_line()
-        + plotnine.geom_point(
-            data=hotspots,
-            color='red'
-        )
-    )
-    
-    streamlit.pyplot(fig.draw())
-    
-    streamlit.markdown(explanation)
-    
-    for row in hotspots.index:
-        context_start = row - (CONTEXT_SIZE // 2)
-        context_stop = row + (CONTEXT_SIZE // 2)
-        context = ''.join(df['sentence'][context_start:context_stop])
-        streamlit.text('[...] ' + context + ' [...]')
+
+        streamlit.pyplot(fig.draw())
+
+        streamlit.markdown(explanation)
+
+        for row in hotspots.index:
+            context_start = row - (CONTEXT_SIZE // 2)
+            context_stop = row + (CONTEXT_SIZE // 2)
+            context = ''.join(df['sentence'][context_start:context_stop])
+            streamlit.text('[...] ' + context + ' [...]')
+        
+    else:
+        
+        streamlit.markdown('text is too short (try at least 3 sentences)'
 
 else:
     
